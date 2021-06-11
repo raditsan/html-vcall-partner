@@ -1,158 +1,143 @@
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="./styles.css" />
-    <style type="text/css">
-      h1 {
-        color: green;
-      }
 
-      .xyz {
-        background-size: auto;
-        text-align: center;
-        padding-top: 100px;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no, maximum-scale=1.0" />
+  <!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+  <link rel="stylesheet" href="./styles.css" />
+  <style type="text/css">
+    h1 {
+      color: green;
+    }
 
-      .btn-circle.btn-sm {
-        width: 30px;
-        height: 30px;
-        padding: 6px 0px;
-        border-radius: 15px;
-        font-size: 8px;
-        text-align: center;
-      }
+    .xyz {
+      background-size: auto;
+      text-align: center;
+      padding-top: 100px;
+    }
 
-      .btn-circle.btn-md {
-        width: 50px;
-        height: 50px;
-        padding: 7px 10px;
-        border-radius: 25px;
-        font-size: 10px;
-        text-align: center;
-      }
+    .btn-circle.btn-sm {
+      width: 30px;
+      height: 30px;
+      padding: 6px 0px;
+      border-radius: 15px;
+      font-size: 8px;
+      text-align: center;
+    }
 
-      .btn-circle.btn-xl {
-        width: 70px;
-        height: 70px;
-        padding: 10px 16px;
-        border-radius: 35px;
-        font-size: 12px;
-        text-align: center;
-      }
+    .btn-circle.btn-md {
+      width: 50px;
+      height: 50px;
+      padding: 7px 10px;
+      border-radius: 25px;
+      font-size: 10px;
+      text-align: center;
+    }
 
-      .avatar {
-        vertical-align: middle;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-      }
-    </style>
-  </head>
+    .btn-circle.btn-xl {
+      width: 70px;
+      height: 70px;
+      padding: 10px 16px;
+      border-radius: 35px;
+      font-size: 12px;
+      text-align: center;
+    }
 
-  <body>
-    <div class="container">
-      <div>
-        <div id="local-stream"></div>
-      </div>
-      <div>
-        <div id="remote-stream"></div>
-      </div>
-      <div id="call-countdown" class="hide">
-        <h3 class="call-name"></h3>
-        <span id="countdown">00:00</span>
-      </div>
-      <div id="call-header">
-        <div id="call-user-info">
-          <img
+    .avatar {
+      vertical-align: middle;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+
+<body style="touch-action: pan-x pan-y;">
+  <div class="container">
+    <div>
+      <div id="local-stream"></div>
+    </div>
+    <div>
+      <div id="remote-stream"></div>
+    </div>
+    <div id="call-countdown" class="hide">
+      <h3 class="call-name"></h3>
+      <span id="countdown">00:00</span>
+    </div>
+    <div id="call-header">
+      <div id="call-user-info">
+        <img
             src="https://www.w3schools.com/howto/img_avatar.png"
             alt="Avatar"
             class="avatar"
           />
-          <h3 class="call-name"></h3>
-          <h4 class="call-question"></h4>
-          <h5 id="call-status">calling...</h5>
-          <span id="countdown-wait" class="hide">
-            Memanggil pasien dalam waktu 00:00</span
-          >
-        </div>
+        <h3 class="call-name"></h3>
+        <h4 class="call-question"></h4>
+        <h5 id="call-status">calling...</h5>
+        <span id="countdown-wait" class="hide">
+            Memanggil pasien dalam waktu 00:00</span>
       </div>
+    </div>
 
-      <div id="call-footer">
-        <div id="call-cancel">
-          <button
+    <div id="call-footer">
+      <div id="call-cancel">
+        <button
             id="onCancelCall"
             type="button"
             class="btn btn-danger btn-circle btn-md"
           >
             <i class="fas fa-times"></i>
           </button>
-        </div>
-        <div id="call-connecting" class="hide">
-          <button
+      </div>
+      <div id="call-connecting" class="hide">
+        <button
             id="onAcceptCall"
             type="button"
             class="btn btn-success btn-circle btn-md"
           >
             <i class="fas fa-phone"></i>
           </button>
-          <div id="call-button-spacer"></div>
-          <button
+        <div id="call-button-spacer"></div>
+        <button
             type="button"
             class="btn btn-danger btn-circle btn-md"
             onclick="onReject()"
           >
             <i class="fas fa-phone reject"></i>
           </button>
-        </div>
-        <div id="call-connected" class="hide">
-          <button
+      </div>
+      <div id="call-connected" class="hide">
+        <button
             id="onEndCall"
             type="button"
             class="btn btn-danger btn-circle btn-md"
           >
             <i class="fas fa-phone reject"></i>
           </button>
-          <div id="call-button-spacer"></div>
-          <button
+        <div id="call-button-spacer"></div>
+        <button
             id="open-record-patient"
             type="button"
             class="btn btn-warning btn-circle btn-md"
           >
             <i class="fas fa-clipboard-list"></i>
           </button>
-        </div>
       </div>
     </div>
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">
-              Riwayat Rekam Medis
-            </h5>
-            <button
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Riwayat Rekam Medis
+          </h5>
+          <button
               type="button"
               class="close"
               data-dismiss="modal"
@@ -160,45 +145,39 @@
             >
               <span aria-hidden="true">&times;</span>
             </button>
-          </div>
-          <div class="modal-body">
-            <div id="medical-record-list">
-              <div class="d-flex justify-content-center">
-                <div class="spinner-border text-primary" role="status">
-                  <span class="sr-only">Loading...</span>
-                </div>
+        </div>
+        <div class="modal-body">
+          <div id="medical-record-list">
+            <div class="d-flex justify-content-center">
+              <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
               </div>
             </div>
           </div>
-          <div class="modal-footer">
-            <button
+        </div>
+        <div class="modal-footer">
+          <button
               type="button"
               class="btn btn-secondary"
               data-dismiss="modal"
             >
               Close
             </button>
-          </div>
         </div>
       </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script
-      type="text/javascript"
-      src="https://cloud.apizee.com/apiRTC/apiRTC-latest.min.js"
-    ></script>
-    <script src="./script.js"></script>
-    <script src="./partner-rtc.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
-      integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/id.min.js"
-      integrity="sha512-he8U4ic6kf3kustvJfiERUpojM8barHoz0WYpAUDWQVn61efpm3aVAD8RWL8OloaDDzMZ1gZiubF9OSdYBqHfQ=="
-      crossorigin="anonymous"
-    ></script>
-  </body>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cloud.apizee.com/apiRTC/apiRTC-latest.min.js"></script>
+  <script src="./script.js"></script>
+  <script src="./partner-rtc.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+    integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/id.min.js"
+    integrity="sha512-he8U4ic6kf3kustvJfiERUpojM8barHoz0WYpAUDWQVn61efpm3aVAD8RWL8OloaDDzMZ1gZiubF9OSdYBqHfQ=="
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
