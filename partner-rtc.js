@@ -440,7 +440,7 @@ $(document).ready(async function() {
                       </div>
                     </div>
                     <div class="col text-right" slot="end" >
-                      <p>${item.item.service_name}</p>
+                      <p>${item.service_name}</p>
                       <p><small>${moment(item.created_at).format(
                         'dddd, D MMM YYYY HH:mm'
                       )}</small></p>
