@@ -55,6 +55,7 @@ $(document).ready(async function() {
   var action = '';
   // var callIdOkeDok = (await localStorage.getItem("callIdOkeDok")) || "303";
   var data = null;
+  var intervalWaiting = 0;
   var listRekamMedis = [];
   var opponentId = null;
   var connectedSession = null;
@@ -125,9 +126,9 @@ $(document).ready(async function() {
             console.error('Audio is now activated');
             document.removeEventListener('touchstart', funcFixIoS);
 
-            $('#status')
-              .empty()
-              .append('iOS / Safari : Audio is now activated');
+            // $('#status')
+            //   .empty()
+            //   .append('iOS / Safari : Audio is now activated');
           })
           .catch(function(error) {
             // Autoplay was prevented.
@@ -161,11 +162,11 @@ $(document).ready(async function() {
             console.error(
               'WARNING : Audio autoplay was prevented by iOS, touch screen to activate audio'
             );
-            $('#status')
-              .empty()
-              .append(
-                'WARNING : iOS / Safari : Audio autoplay was prevented by iOS, touch screen to activate audio'
-              );
+            // $('#status')
+            //   .empty()
+            //   .append(
+            //     'WARNING : iOS / Safari : Audio autoplay was prevented by iOS, touch screen to activate audio'
+            //   );
           } else {
             console.error('Autoplay was prevented');
           }
@@ -247,7 +248,7 @@ $(document).ready(async function() {
       console.log('retry setCountdown');
       setTimeout(function() {
         setCountdown();
-      }, 1000);
+      }, 500);
     }
     // set_countdouwn_interval = setInterval(function() {
     //   if (localStreamReady && remoteStreamReady) {
@@ -259,11 +260,11 @@ $(document).ready(async function() {
     // }, 300);
   }
 
-  function setCountdown2(rangeTime) {
+  function setCountdownWaiting(rangeTime) {
     showCountDownWaiting(true);
     var timeStr = secondsToTime(rangeTime);
     var timer2 = timeStr['m'] + ':' + timeStr['s'];
-    var interval = setInterval(function() {
+    intervalWaiting = setInterval(function() {
       var timer = timer2.split(':');
       //by parsing integer, I avoid all extra string processing
       var minutes = parseInt(timer[0], 10);
@@ -271,7 +272,7 @@ $(document).ready(async function() {
       --seconds;
       minutes = seconds < 0 ? --minutes : minutes;
       if (minutes < 0) {
-        clearInterval(interval);
+        clearInterval(intervalWaiting);
         onEndCall('timesup_waiting');
         return;
       }
@@ -439,7 +440,7 @@ $(document).ready(async function() {
                       </div>
                     </div>
                     <div class="col text-right" slot="end" >
-                      <p>${item.item.service_name}</p>
+                      <p>${item.service_name}</p>
                       <p><small>${moment(item.created_at).format(
                         'dddd, D MMM YYYY HH:mm'
                       )}</small></p>
@@ -486,6 +487,7 @@ $(document).ready(async function() {
       $('#call-status').addClass('hide');
       $('#countdown-wait').removeClass('hide');
     } else {
+      clearInterval(intervalWaiting);
       $('#call-status').removeClass('hide');
       $('#countdown-wait').addClass('hide');
     }
@@ -700,7 +702,7 @@ $(document).ready(async function() {
     ua.register(registerInformation)
       .then(function(session) {
         setStatus('ringing...');
-        setCountdown2(120);
+        setCountdownWaiting(120);
         connectedSession = session;
         console.log('opponentId', opponentId);
         sendNotification();
