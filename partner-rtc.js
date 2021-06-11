@@ -1,53 +1,53 @@
 'use strict';
 $(document).ready(async function() {
-  localStorage.setItem(
-    'order_data',
-    JSON.stringify({
-      order_id: '42',
-      order_code: 'OKV202106070001',
-      queue_id: '1',
-      queue_service_id: '2',
-      queue_list_id: '7',
-      doctor_id: '5',
-      patient_id_parent: '8',
-      patient_id: '8',
-      patient_name: 'Adit Member',
-      patient_age: '0',
-      patient_birth_date: '2021-06-07',
-      patient_gender: 'male',
-      order_number: '1',
-      skipped: '1',
-      complaint: 'okevcall test',
-      status: 'paid',
-      order_date: '2021-06-07T07:02:26.227Z',
-      service_name: 'okevcall',
-      order_service_id: '42',
-      service_id: '2',
-      address: '----------',
-      address_note: '-',
-      location: 'null',
-      start_at: 'null',
-      end_at: 'null',
-      token_midtrans: 'null',
-      user_name: 'Adit Member',
-      patient_phone: '081298249207',
-      doctor_name: 'Dr raditsan ',
-      doctor_type: 'umum',
-      admin_fee: '10000',
-      share_fee: '2000',
-      service_fee: '8000',
-      appointment_date: '2021-06-07T14:02:25.000Z',
-      medical_record: 'false',
-      medical_record_url:
-        'https://stage-api.okedok.co.id/v2/order/42/medicalrecords',
-      api_base_url: 'https://stage-api.okedok.co.id/v2/',
-      api_key_field: 'apiKey',
-      api_key: 'C2kmG6LOUZyJF6ZK3EitJMA5EKFlNJQI',
-      api_token:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiRHIgcmFkaXRzYW4gIiwiZG9jdG9yX2lkIjo1LCJwaWN0dXJlX3VybCI6Im51bGwiLCJlbWFpbCI6InJhZGl0c2FkaXR5YTJAZ21haWwuY29tIiwicGhvbmUiOiIwODEyOTgyNDkyMDciLCJzdGF0dXMiOiJhY3RpdmUiLCJ0eXBlIjoiZG9jdG9yIiwiZmNtX3Rva2VuIjoiY0VOZFRDVE5HMEZBZ1MtdEUya0N4VTpBUEE5MWJFX2VSQVhCZ2otTFBhdjFJOVlIVnZtMHJpeGs2V3F5NGJLR1FvQmpXZHIwdlZSQjNWVW41M28xNGdic2YzMDd1bldBRVVqS2F1dUFKamNpNVVQV1JFQVpKWnhhZGQwT0JvZTd0aENmNTRkT3BCdVFqZTB6bE5TalctUUNTNS13NVQzZjJNRSIsImRldmljZSI6IndlYiIsImRldmljZV9pbmZvIjoiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTAuMTU7IHJ2Ojg5LjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvODkuMCIsImRvY3Rvcl90eXBlIjoidW11bSIsInJlZ2lzdHJhdGlvbl9udW1iZXIiOiI4MjUwNjIiLCJyZWdpc3RyYXRpb25fY29kZSI6IlJFRzIwMjEwNjA0OTIwNyIsInJlZ2lzdHJhdGlvbl9pbnRlcnZpZXdfZGF0ZSI6IjIwMjEtMDYtMDdUMDY6NDA6NDUuNDQzWiIsInJlZ2lzdHJhdGlvbl9zdGF0dXMiOiJhY2NlcHRlZCIsInJlZ2lzdHJhdGlvbl9leHBpcmUiOiIyMDIxLTA2LTExVDA2OjQwOjQ1LjQ0M1oiLCJpYXQiOjE2MjMwNDY0MDV9.YMKPIivHPsUQ2_eYCa9-xO0cnYVVXFw9L_c64XOV944',
-      apzKey: '784f886e00021c60cad7e263f2177416'
-    })
-  );
+  // localStorage.setItem(
+  //   'order_data',
+  //   JSON.stringify({
+  //     order_id: '42',
+  //     order_code: 'OKV202106070001',
+  //     queue_id: '1',
+  //     queue_service_id: '2',
+  //     queue_list_id: '7',
+  //     doctor_id: '5',
+  //     patient_id_parent: '8',
+  //     patient_id: '8',
+  //     patient_name: 'Adit Member',
+  //     patient_age: '0',
+  //     patient_birth_date: '2021-06-07',
+  //     patient_gender: 'male',
+  //     order_number: '1',
+  //     skipped: '1',
+  //     complaint: 'okevcall test',
+  //     status: 'paid',
+  //     order_date: '2021-06-07T07:02:26.227Z',
+  //     service_name: 'okevcall',
+  //     order_service_id: '42',
+  //     service_id: '2',
+  //     address: '----------',
+  //     address_note: '-',
+  //     location: 'null',
+  //     start_at: 'null',
+  //     end_at: 'null',
+  //     token_midtrans: 'null',
+  //     user_name: 'Adit Member',
+  //     patient_phone: '081298249207',
+  //     doctor_name: 'Dr raditsan ',
+  //     doctor_type: 'umum',
+  //     admin_fee: '10000',
+  //     share_fee: '2000',
+  //     service_fee: '8000',
+  //     appointment_date: '2021-06-07T14:02:25.000Z',
+  //     medical_record: 'false',
+  //     medical_record_url:
+  //       'https://stage-api.okedok.co.id/v2/order/42/medicalrecords',
+  //     api_base_url: 'https://stage-api.okedok.co.id/v2/',
+  //     api_key_field: 'apiKey',
+  //     api_key: 'C2kmG6LOUZyJF6ZK3EitJMA5EKFlNJQI',
+  //     api_token:
+  //       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiRHIgcmFkaXRzYW4gIiwiZG9jdG9yX2lkIjo1LCJwaWN0dXJlX3VybCI6Im51bGwiLCJlbWFpbCI6InJhZGl0c2FkaXR5YTJAZ21haWwuY29tIiwicGhvbmUiOiIwODEyOTgyNDkyMDciLCJzdGF0dXMiOiJhY3RpdmUiLCJ0eXBlIjoiZG9jdG9yIiwiZmNtX3Rva2VuIjoiY0VOZFRDVE5HMEZBZ1MtdEUya0N4VTpBUEE5MWJFX2VSQVhCZ2otTFBhdjFJOVlIVnZtMHJpeGs2V3F5NGJLR1FvQmpXZHIwdlZSQjNWVW41M28xNGdic2YzMDd1bldBRVVqS2F1dUFKamNpNVVQV1JFQVpKWnhhZGQwT0JvZTd0aENmNTRkT3BCdVFqZTB6bE5TalctUUNTNS13NVQzZjJNRSIsImRldmljZSI6IndlYiIsImRldmljZV9pbmZvIjoiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTAuMTU7IHJ2Ojg5LjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvODkuMCIsImRvY3Rvcl90eXBlIjoidW11bSIsInJlZ2lzdHJhdGlvbl9udW1iZXIiOiI4MjUwNjIiLCJyZWdpc3RyYXRpb25fY29kZSI6IlJFRzIwMjEwNjA0OTIwNyIsInJlZ2lzdHJhdGlvbl9pbnRlcnZpZXdfZGF0ZSI6IjIwMjEtMDYtMDdUMDY6NDA6NDUuNDQzWiIsInJlZ2lzdHJhdGlvbl9zdGF0dXMiOiJhY2NlcHRlZCIsInJlZ2lzdHJhdGlvbl9leHBpcmUiOiIyMDIxLTA2LTExVDA2OjQwOjQ1LjQ0M1oiLCJpYXQiOjE2MjMwNDY0MDV9.YMKPIivHPsUQ2_eYCa9-xO0cnYVVXFw9L_c64XOV944',
+  //     apzKey: '784f886e00021c60cad7e263f2177416'
+  //   })
+  // );
   // apiRTC.setLogLevel(10);
   setStatus('calling...');
   var localStreamReady = false;
