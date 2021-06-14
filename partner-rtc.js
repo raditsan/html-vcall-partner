@@ -279,6 +279,7 @@ $(document).ready(async function() {
   }
 
   function onEndCall(type = 'onEndCall') {
+    console.log('onEndCall');
     action = type;
     if (type === 'timesup_waiting') {
       sendMessageToNative({
@@ -729,6 +730,7 @@ $(document).ready(async function() {
   });
 
   $('#do-endcall-button').click(function() {
+    console.log('do-endcall-button');
     onEndCall('endcall');
   });
 
