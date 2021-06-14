@@ -253,7 +253,7 @@ video[id^='remote-media-'] {
   display: flex;
   align-items: center;
   /* justify-content: center; */
-  height: 100%;
+  /* height: 100%; */
 }
 
 /* div.medical-detail > div.item > p {

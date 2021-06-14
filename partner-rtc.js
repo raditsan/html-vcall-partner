@@ -402,7 +402,7 @@ $(document).ready(async function() {
               </div>
               <div class="row no-gutters medical-profile">
                 <div class="col-2">
-                  <div class="medical-avatar align-center" slot="start">
+                  <div class="medical-avatar align-center">
                     <img src="${
                       item.doctor_picture
                         ? item.doctor_picture
@@ -417,7 +417,7 @@ $(document).ready(async function() {
                         <b>${item.doctor_name || item.partner_name}</b>
                       </div>
                     </div>
-                    <div class="col text-right" slot="end" >
+                    <div class="col text-right">
                       <p>${item.service_name || ''}</p>
                       <p><small>${moment(item.created_at).format(
                         'dddd, D MMM YYYY HH:mm'
