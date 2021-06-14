@@ -116,6 +116,11 @@ video[id^='remote-media-'] {
   align-items: center;
 }
 
+#countdown-wait {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
 #call-countdown {
   position: absolute;
   top: 20px;
