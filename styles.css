@@ -127,17 +127,25 @@ video[id^='remote-media-'] {
   width: 20%;
 }
 
-.modal-dialog {
+#medical-record-modal .modal-dialog {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
-.modal-content {
+#medical-record-modal .modal-content {
   height: auto;
   min-height: 100%;
   border-radius: 0;
+  padding-bottom: 100px;
+}
+
+#medical-record-modal .modal-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
 }
 
 .medical-card {

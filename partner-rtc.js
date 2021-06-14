@@ -216,48 +216,12 @@ $(document).ready(async function() {
         );
         timer2 = minutes + ':' + seconds;
       }, 1000);
-      // var dt = new Date();
-      // dt.setSeconds(parseFloat(data.rangeTime));
-      // var countDownDate = dt.getTime();
-      // console.log("countDownDate", countDownDate);
-      // // Update the count down every 1 second
-      // countdouwn_interval = setInterval(function() {
-      //   // Get today's date and time
-      //   var now = new Date().getTime();
-
-      //   // Find the distance between now and the count down date
-      //   var distance = countDownDate - now;
-
-      //   // Time calculations for days, hours, minutes and seconds
-      //   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      //   var hours = Math.floor(
-      //     (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      //   );
-      //   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      //   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      //   $("#countdown").html(minutes + ":" + seconds);
-      //   // If the count down is over, write some text
-      //   if (distance < 0) {
-      //     clearInterval(countdouwn_interval);
-      //     onEndCall("timesup");
-      //     $("#countdown").html("00:00");
-      //   }
-      // }, 1000);
     } else {
       console.log('retry setCountdown');
       setTimeout(function() {
         setCountdown();
       }, 500);
     }
-    // set_countdouwn_interval = setInterval(function() {
-    //   if (localStreamReady && remoteStreamReady) {
-
-    //     clearInterval(set_countdouwn_interval);
-    //   } else {
-    //     setCountdown();
-    //   }
-    // }, 300);
   }
 
   function setCountdownWaiting(rangeTime) {
@@ -398,7 +362,7 @@ $(document).ready(async function() {
   }
 
   async function getMedicalRecord() {
-    $('#exampleModal').modal();
+    $('#medical-record-modal').modal();
     $.ajax({
       url: data.api_base_url + 'order/' + data.order_id + '/medicalrecords',
       method: 'GET',
@@ -410,6 +374,16 @@ $(document).ready(async function() {
         listRekamMedis = results || [];
         $('#medical-record-list').html('');
         listRekamMedis.forEach(item => {
+          const p = `
+         ${item.follow_up ? '- ' + item.follow_up + '<br>' : ''}
+         ${item.lab_item_name ? '- [LAB]' + item.lab_item_name + '<br>' : ''}
+         ${
+           item.radiology_item_name
+             ? '- [RADIOLOGI]' + item.radiology_item_name
+             : ''
+         }
+        `;
+          const penunjang = p.trim() === '' ? '-' : p;
           $('#medical-record-list').append(`
               <div class="medical-card">
               <div class="medical-header">
@@ -440,7 +414,7 @@ $(document).ready(async function() {
                       </div>
                     </div>
                     <div class="col text-right" slot="end" >
-                      <p>${item.service_name}</p>
+                      <p>${item.service_name || ''}</p>
                       <p><small>${moment(item.created_at).format(
                         'dddd, D MMM YYYY HH:mm'
                       )}</small></p>
@@ -454,22 +428,35 @@ $(document).ready(async function() {
                   <p style="margin-top:10px;">${item.anamnesis_type}</p>
                 </div>
                 <div class="item">
-                  <p class="label-gray">Diagnosis</p>
+                  <p class="label-gray">${
+                    item.order_code.substr(0, 3) == 'OKC'
+                      ? 'Curig / Kesan'
+                      : 'Diagnosis'
+                  }</p>
                   <p style="margin-top:10px;">${item.diagnosis}</p>
                 </div>
                 <div class="item">
-                  <p class="label-gray">Terapi/Obat</p>
-                  <p style="margin-top:10px;white-space:pre-wrap;">${
-                    item.medicine
+                  <p class="label-gray">${
+                    item.order_code.substr(0, 3) != 'OKC'
+                      ? 'Terapi/Obat'
+                      : 'Penatalaksanaan/Obat'
                   }</p>
+                  <p style="margin-top:10px;white-space:pre-wrap;">${item.medicines ||
+                    '-'}</p>
                 </div>
-                <div class="item">
+                <div class="item ${
+                  ['OKC', 'OKV'].includes(item.order_code.substr(0, 3))
+                    ? 'hide'
+                    : ''
+                }">
                   <p class="label-gray">Pemeriksaan Penunjang</p>
-                  <p style="margin-top:10px;">${item.followup}</p>
+                  <p style="margin-top:10px;">
+                  ${penunjang}
+                  </p>
                 </div>
                 <div class="item" lines="none" style="margin-bottom: 10px;">
-                  <p class="label-gray">Notes and Allergies</p>
-                  <p style="margin-top:10px;">${item.followup_note}</p>
+                  <p class="label-gray">Catatan dan Alergi</p>
+                  <p style="margin-top:10px;">${item.follow_up_note || '-'}</p>
                 </div>
               </div>
             </div>
@@ -734,6 +721,10 @@ $(document).ready(async function() {
   }
 
   $('#onEndCall').click(function() {
+    $('#end-call-confirm-modal').modal();
+  });
+
+  $('#do-endcall-button').click(function() {
     onEndCall('endcall');
   });
 
@@ -742,6 +733,10 @@ $(document).ready(async function() {
   });
 
   $('#onCancelCall').click(function() {
+    const order = JSON.parse(localStorage.getItem('order_data'));
+    data = order;
+    getMedicalRecord();
+    return;
     sendMessageToNative({
       process: 'cancel'
     });
